@@ -1,0 +1,21 @@
+environments:
+  HOME: /root
+  PATH: $PATH:/opt/chefdk/embedded/bin:/opt/chef/embedded/bin:/usr/bin
+  ROLE: '{{config.role}}'
+  CONSUL_SECRET_KEY: '{{config.token}}'
+
+default:
+  timeout: 1800
+
+events:
+  configure:
+    description: Execute DR configure
+    priority: 99
+    task: configure
+
+tasks:
+  configure:
+    description: Zabbix disaster recovery
+    operations:
+      - execute:
+          script: touch /tmp/testfile-dev

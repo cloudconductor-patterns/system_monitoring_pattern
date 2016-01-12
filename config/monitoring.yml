@@ -1,0 +1,6 @@
+variables:
+  zabbix_url: 'http://127.0.0.1/'
+  zabbix_user: 'Admin'
+  zabbix_password: 'zabbix'
+  zabbix_port: '8500'
+  zabbix_default_template_name: 'Template Linux'
