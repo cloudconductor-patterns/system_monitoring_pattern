@@ -11,9 +11,11 @@ dependencies: ["cloud_conductor_init"]
 conflicts: []
 
 providers:
-    aws: cloud_formation
-    openstack: cloud_formation
+    aws:
+      - cloud_formation
+    openstack:
+      - cloud_formation
 
 supports:
-  - os: "centos"
-    version: "= 6.5"
+  - platform: "centos"
+    platform_version: "6.5"
