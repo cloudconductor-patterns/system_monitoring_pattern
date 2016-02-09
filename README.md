@@ -66,7 +66,7 @@ sample) config/environment_attribute.json.smp
 ```
 
 - How to
-  `cc-cli environment create --system sample_system --blueprint sample_blueprint --clouds cloud-aws --name sample_environment --version 1 --user-attribute-file ~/monitoring.json`
+  `cc-cli environment create --system sample_system --blueprint sample_blueprint --clouds cloud-aws --name sample_environment --version 1 --user-attribute-file ~/environment_attribute.json`
 
 
 Copyright and License
