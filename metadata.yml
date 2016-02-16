@@ -4,7 +4,7 @@ maintainer_email: "ccndctr@gmail.com"
 license:          "Apache v2.0"
 description:      "CloudConductor disaster recovery monitoring pattern"
 version:          "1.0.0"
-url:              "https://github.com/bsmile/system_monitoring_pattern"
+url:              "https://github.com/cloudconductor-patterns/system_monitoring_pattern"
 
 type:      "optional"
 dependencies: ["cloud_conductor_init"]
