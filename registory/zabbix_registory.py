@@ -151,6 +151,7 @@ if __name__ == '__main__':
     decode_consul_kv = json.loads(consul_kv)
     decode_user_attribute = json.loads(base64.b64decode(decode_consul_kv[0]["Value"]))
     cloudconductor_url = decode_user_attribute['common']['cloudconductor_url']
+    cloudconductor_token = decode_user_attribute['common']['cloudconductor_auth_token']
     zabbix_user = decode_user_attribute['zabbix_part']['zabbix_user']
     zabbix_password = decode_user_attribute['zabbix_part']['zabbix_password']
     zabbix_url = decode_user_attribute['zabbix_part']['zabbix_url']
@@ -165,7 +166,6 @@ if __name__ == '__main__':
     consul_kv = get_kv("cloudconductor/account_token",ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
     decode_consul_kv = json.loads(consul_kv)
     decode_user_attribute = json.loads(base64.b64decode(decode_consul_kv[0]["Value"]))
-    cloudconductor_token = decode_user_attribute['auth_token']
 
     consul_kv = get_kv("cloudconductor/system_domain",ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
     decode_consul_kv = json.loads(consul_kv)
