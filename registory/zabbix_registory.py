@@ -169,7 +169,7 @@ if __name__ == '__main__':
 
     try:
         system_domain = decode_user_attribute['dns']
-    except Exception, e:
+    except Exception, w:
         system_domain = 'localhost'
         print w, 'Please dns name change the settings as soon as possible.'
 
