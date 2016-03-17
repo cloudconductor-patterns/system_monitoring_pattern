@@ -53,7 +53,7 @@ sample) config/environment_attribute.json.smp
   "system_monitoring_pattern": {
     "common": {
       "cloudconductor_url": "[[CLOUDCONDUCTOR_URL[:8080]]]",
-      "cloudconductor_token": "[[CLOUDCONDUCTOR_TOKEN]]"
+      "cloudconductor_auth_token: "[[CLOUDCONDUCTOR_TOKEN]]"
     },
     "zabbix_part": {
       "zabbix_url": "http://[[ZABBIX.ADDRESS]]/zabbix",
