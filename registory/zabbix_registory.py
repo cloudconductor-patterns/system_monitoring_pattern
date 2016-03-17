@@ -166,7 +166,13 @@ if __name__ == '__main__':
     consul_kv = get_kv("cloudconductor/system_domain",ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
     decode_consul_kv = json.loads(consul_kv)
     decode_user_attribute = json.loads(base64.b64decode(decode_consul_kv[0]["Value"]))
-    system_domain = decode_user_attribute['dns']
+
+    try:
+        system_domain = decode_user_attribute['dns']
+    except Exception, e:
+        system_domain = 'localhost'
+        print w, 'Please dns name change the settings as soon as possible.'
+
     system_name = decode_user_attribute['name']
 
     # Create ZabbixAPI class instance

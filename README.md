@@ -40,7 +40,7 @@ Please see the attribute files if you want to know what kind of attributes are i
 | Attribute             | Value                                           |
 | -------------------- |:------------------------------------------------ |
 | cloudconductor_url   | Cloudconductor grobal address (port)             |
-| cloudconductor_token | Cloudconductor accsess secret key                |
+| cloudconductor_auth_token | Cloudconductor accsess secret key                |
 | zabbix_url           | zabbix-web front address                         |
 | zabbix_user          | zabbix usertype: Zabbix Admin and RW Permissions |
 | zabbix_password      | zabbix password                                  |
@@ -66,6 +66,10 @@ sample) config/environment_attribute.json.smp
 ```
 
 - How to
+
+Please be sure to specify the domain when you create a system
+  `cc-cli system create --project sample_project --name dr-pattern --description "disaster recovery pattern" --domain "disaster.sampledomain.com"`
+
   `cc-cli environment create --system sample_system --blueprint sample_blueprint --clouds cloud-aws --name sample_environment --version 1 --user-attribute-file ~/environment_attribute.json`
 
 

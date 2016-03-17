@@ -13,9 +13,15 @@ conflicts: []
 providers:
     aws:
       - cloud_formation
+      - terraform
     openstack:
       - cloud_formation
+      - terraform
+    wakame-vdc:
+      - terraform
 
 supports:
   - platform: "centos"
     platform_version: "6.5"
+  - platform: "centos"
+    platform_version: "7.1"
