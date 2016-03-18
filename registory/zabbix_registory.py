@@ -221,4 +221,4 @@ if __name__ == '__main__':
     except Exception, e:
         print e, 'ZabbixAPI: Action exist failed.'
 
-    exit (True)
+    exit (0)
