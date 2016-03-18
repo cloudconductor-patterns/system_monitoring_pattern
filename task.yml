@@ -27,7 +27,8 @@ tasks:
             pip install wheel --upgrade
             pip install setuptools --upgrade
             pip install --use-wheel py-zabbix --upgrade
-            consul lock -token $CONSUL_SECRET_KEY -verbose service/monitoring/configure/lock "python ./registory/zabbix_registory.py"
+            consul lock -token $CONSUL_SECRET_KEY -verbose service/monitoring/configure/lock "python ./registory/zabbix_registory.py" | tee $log_path
+            ! grep "Error running handler: exit status" $log_path
 
   spec:
     description: Zabbix disaster recovery spec
