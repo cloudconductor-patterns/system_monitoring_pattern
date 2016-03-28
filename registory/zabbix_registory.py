@@ -189,7 +189,7 @@ if __name__ == '__main__':
 
     try:
         system_domain = decode_user_attribute['dns']
-    except Exception, w:
+    except Exception as w:
         system_domain = 'localhost'
         print w, 'Please dns name change the settings as soon as possible.'
 
@@ -198,7 +198,7 @@ if __name__ == '__main__':
     # Create ZabbixAPI class instance
     try:
         zapi = ZabbixAPI(url=zabbix_url, user=zabbix_user, password=zabbix_password)
-    except Exception, e:
+    except Exception as e:
         print e, 'ZabbixAPI: Authenticate failed.'
         exit (-1)
 
@@ -217,7 +217,7 @@ if __name__ == '__main__':
             hostgroup_id = result_hostgroup['result']['groupids'][0]
         else:
             hostgroup_id = result_hostgroup['result'][0]['groupid']
-    except Exception, e:
+    except Exception as e:
         print e, 'ZabbixAPI: Hostgroup exist failed.'
         exit (-1)
 
@@ -231,7 +231,7 @@ if __name__ == '__main__':
             host_id = result_host['result']['hostids'][0]
         else:
             host_id = result_host['result'][0]['hostid']
-    except Exception, e:
+    except Exception as e:
         print e, 'ZabbixAPI: Host exist failed.'
         exit (-1)
 
@@ -244,7 +244,7 @@ if __name__ == '__main__':
         else:
             result_action = zapi.do_request('action.update', action_update_params(result_action['result'][0]['actionid'], host_id, operation(environment_id, cloudconductor_token, cloudconductor_url), result_version))
 
-    except Exception, e:
+    except Exception as e:
         print e, 'ZabbixAPI: Action exist failed.'
         exit (-1)
 
