@@ -180,6 +180,7 @@ if __name__ == '__main__':
         zapi = ZabbixAPI(url=zabbix_url, user=zabbix_user, password=zabbix_password)
     except Exception, e:
         print e, 'ZabbixAPI: Authenticate failed.'
+        exit (-1)
 
     # Get Zabbix API version
     try:
@@ -198,6 +199,7 @@ if __name__ == '__main__':
             hostgroup_id = result_hostgroup['result'][0]['groupid']
     except Exception, e:
         print e, 'ZabbixAPI: Hostgroup exist failed.'
+        exit (-1)
 
     # Host create
     hostname = system_domain
@@ -211,6 +213,7 @@ if __name__ == '__main__':
             host_id = result_host['result'][0]['hostid']
     except Exception, e:
         print e, 'ZabbixAPI: Host exist failed.'
+        exit (-1)
 
     # Action registry
     action = 'FailOver_' + hostname
@@ -220,5 +223,6 @@ if __name__ == '__main__':
             result_action = zapi.do_request('action.create', action_create_params(action,host_id, operation(environment_id, cloudconductor_token, cloudconductor_url),result_version))
     except Exception, e:
         print e, 'ZabbixAPI: Action exist failed.'
+        exit (-1)
 
     exit (0)
