@@ -241,7 +241,7 @@ if __name__ == '__main__':
         result_action = zapi.do_request('action.get', { 'filter': {'name': action}})
         if str(result_action['result']) == '[]':
             result_action = zapi.do_request('action.create', action_create_params(action, host_id, operation(environment_id, cloudconductor_token, cloudconductor_url), result_version))
-        else
+        else:
             result_action = zapi.do_request('action.update', action_update_params(result_action['result'][0]['actionid'], host_id, operation(environment_id, cloudconductor_token, cloudconductor_url), result_version))
 
     except Exception, e:
