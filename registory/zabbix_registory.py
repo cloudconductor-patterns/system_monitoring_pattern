@@ -24,9 +24,9 @@ from distutils.version import StrictVersion
 
 def ret_url_encode(encode_str):
 
-    return encode_str.replace('+','%2B')
+    return encode_str.replace('+', '%2B')
 
-def get_kv(keystrings,token):
+def get_kv(keystrings, token):
 
     import urllib2
 
@@ -84,7 +84,8 @@ def action_create_params(action, host_id, operation, version):
             }
     }
     else:
-        ret_parameters = { 'name': action,
+        ret_parameters = {
+            'name': action,
             'eventsource': 0,
             'status': 0, # enabled
             'esc_period': 120,
@@ -151,7 +152,7 @@ def generate_operations(operation):
 
     return ret_parameters
 
-def operation(environment_id ,auth_token, url):
+def operation(environment_id, auth_token, url):
 
     parameter = '\'{"switch": "true", "auth_token": "' + auth_token + '"}\''
     ret_parameters = 'curl -H "Content-Type:application/json" -X POST -d ' + parameter + ' ' + url.rstrip('/') + '/api/v1/environments/' + str(environment_id) + '/rebuild'
@@ -166,7 +167,7 @@ if __name__ == '__main__':
     # ex. yaml_data = load_yaml('monitoring.yml')
 
     # Settings Json
-    consul_kv = get_kv("cloudconductor/patterns/system_monitoring_pattern/attributes",ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
+    consul_kv = get_kv("cloudconductor/patterns/system_monitoring_pattern/attributes", ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
     decode_consul_kv = json.loads(consul_kv)
     decode_user_attribute = json.loads(base64.b64decode(decode_consul_kv[0]["Value"]))
     cloudconductor_url = decode_user_attribute['common']['cloudconductor_url']
@@ -177,12 +178,12 @@ if __name__ == '__main__':
     zabbix_template = decode_user_attribute['zabbix_part']['zabbix_template']
 
     # Getting Consul KV
-    consul_kv = get_kv("cloudconductor/environment_id",ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
+    consul_kv = get_kv("cloudconductor/environment_id", ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
     decode_consul_kv = json.loads(consul_kv)
     decode_user_attribute = json.loads(base64.b64decode(decode_consul_kv[0]["Value"]))
     environment_id = decode_user_attribute['environment_id']
 
-    consul_kv = get_kv("cloudconductor/system_domain",ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
+    consul_kv = get_kv("cloudconductor/system_domain", ret_url_encode(os.environ['CONSUL_SECRET_KEY']))
     decode_consul_kv = json.loads(consul_kv)
     decode_user_attribute = json.loads(base64.b64decode(decode_consul_kv[0]["Value"]))
 
@@ -239,7 +240,7 @@ if __name__ == '__main__':
     try:
         result_action = zapi.do_request('action.get', { 'filter': {'name': action}})
         if str(result_action['result']) == '[]':
-            result_action = zapi.do_request('action.create', action_create_params(action,host_id, operation(environment_id, cloudconductor_token, cloudconductor_url),result_version))
+            result_action = zapi.do_request('action.create', action_create_params(action, host_id, operation(environment_id, cloudconductor_token, cloudconductor_url), result_version))
         else
             result_action = zapi.do_request('action.update', action_update_params(result_action['result'][0]['actionid'], host_id, operation(environment_id, cloudconductor_token, cloudconductor_url), result_version))
 
