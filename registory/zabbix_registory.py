@@ -97,6 +97,25 @@ def action_create_params(action, host_id, operation, version):
 
     return ret_parameters
 
+def action_update_params(action_id, host_id, operation, version):
+
+    if StrictVersion(version) >= StrictVersion("2.4"):
+        ret_parameters = {
+            'actionid': action_id,
+            'operations': generate_operations(operation),
+            'filter': {
+                'conditions': generate_conditions(host_id)
+            }
+    }
+    else:
+        ret_parameters = {
+            'actionid': action_id,
+            'operations': generate_operations(operation),
+            'conditions': generate_conditions(host_id)
+        }
+
+    return ret_parameters
+
 def generate_conditions(host_id):
 
     ret_parameters = [
@@ -221,6 +240,9 @@ if __name__ == '__main__':
         result_action = zapi.do_request('action.get', { 'filter': {'name': action}})
         if str(result_action['result']) == '[]':
             result_action = zapi.do_request('action.create', action_create_params(action,host_id, operation(environment_id, cloudconductor_token, cloudconductor_url),result_version))
+        else
+            result_action = zapi.do_request('action.update', action_update_params(result_action['result'][0]['actionid'], host_id, operation(environment_id, cloudconductor_token, cloudconductor_url), result_version))
+
     except Exception, e:
         print e, 'ZabbixAPI: Action exist failed.'
         exit (-1)
