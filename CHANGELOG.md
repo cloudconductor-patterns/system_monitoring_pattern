@@ -1,6 +1,6 @@
 CHANGELOG
 =========
 
-## version 0.1.0 (2016/02/09)
+## version 1.0.0 (2016/03/30)
 
   - First release of system monitoring pattern that provides user with DR (disaster recovery) feature.

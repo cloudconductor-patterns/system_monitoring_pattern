@@ -4,7 +4,7 @@ About
 This is the optional pattern designed to disaster recovery which monitoring provides to platform less patterns.
 Currently supported oparationg system:
 
-* CentOS (6.5)
+* CentOS (6.7 7.2)
 
 Currently supported monitoring software:
 
@@ -18,7 +18,7 @@ Requirements
 Prerequisites
 -------------
 
-- cloudconductor (>= 1.1)
+- cloudconductor (>= 2.0)
 - any platform pattern
 
 How to use patterns
