@@ -22,6 +22,6 @@ providers:
 
 supports:
   - platform: "centos"
-    platform_version: "6.5"
+    platform_version: "6.7"
   - platform: "centos"
-    platform_version: "7.1"
+    platform_version: "7.2"
