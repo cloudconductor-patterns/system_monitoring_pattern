@@ -1,0 +1,14 @@
+{
+  "system_monitoring_pattern": {
+    "common": {
+      "cloudconductor_url": "[[CLOUDCONDUCTOR_URL[:8080]]]",
+      "cloudconductor_auth_token": "[[USER_AUTH_TOKEN]]
+    },
+    "zabbix_part": {
+      "zabbix_url": "http://[[ZABBIX.ADDRESS]]/zabbix",
+      "zabbix_user": "[[USERNAME]]",
+      "zabbix_password": "[[PASSWORD]]",
+      "zabbix_template": "Template App HTTP Service"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 environments:
   HOME: /root
-  PATH: $PATH:/opt/chefdk/embedded/bin:/opt/chef/embedded/bin:/usr/bin
+  PATH: $PATH:/opt/chefdk/embedded/bin:/opt/chef/embedded/bin:/usr/bin:/usr/local/bin
   ROLE: '{{config.role}}'
   CONSUL_SECRET_KEY: '{{config.token}}'
 
@@ -13,9 +13,26 @@ events:
     priority: 99
     task: configure
 
+  spec:
+    description: Execute DR spec
+    task: spec
+
 tasks:
   configure:
     description: Zabbix disaster recovery
     operations:
       - execute:
-          script: touch /tmp/testfile-dev
+          script: |
+            curl -skL https://bootstrap.pypa.io/get-pip.py | python
+            pip install wheel --upgrade
+            pip install setuptools --upgrade
+            pip install --use-wheel py-zabbix --upgrade
+            consul lock -token $CONSUL_SECRET_KEY -verbose service/monitoring/configure/lock "python ./registory/zabbix_registory.py" | tee $log_path
+            ! grep "Error running handler: exit status" $log_path
+
+  spec:
+    description: Zabbix disaster recovery spec
+    operations:
+      - execute:
+          script: |
+            consul lock -token $CONSUL_SECRET_KEY -verbose service/monitoring/spec/lock "python ./spec/zabbix_spec.py"

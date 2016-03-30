@@ -4,16 +4,24 @@ maintainer_email: "ccndctr@gmail.com"
 license:          "Apache v2.0"
 description:      "CloudConductor disaster recovery monitoring pattern"
 version:          "1.0.0"
-url:              "https://github.com/bsmile/system_monitoring_pattern"
+url:              "https://github.com/cloudconductor-patterns/system_monitoring_pattern"
 
 type:      "optional"
 dependencies: ["cloud_conductor_init"]
 conflicts: []
 
 providers:
-    aws: cloud_formation
-    openstack: cloud_formation
+    aws:
+      - cloud_formation
+      - terraform
+    openstack:
+      - cloud_formation
+      - terraform
+    wakame-vdc:
+      - terraform
 
 supports:
-  - os: "centos"
-    version: "= 6.5"
+  - platform: "centos"
+    platform_version: "6.7"
+  - platform: "centos"
+    platform_version: "7.2"
